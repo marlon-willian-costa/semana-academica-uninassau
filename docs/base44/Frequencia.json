@@ -1,0 +1,11 @@
+{
+  "name": "Frequencia",
+  "type": "object",
+  "properties": {
+    "aluno_id": { "type": "string", "description": "id do registro em Aluno (chave estrangeira)" },
+    "dia_id": { "type": "string", "enum": ["D1", "D2", "D3", "D4", "D5"], "description": "Dia do evento (ver js/config.js)" },
+    "data_registro": { "type": "string", "format": "date-time", "description": "Momento do check-in" },
+    "registrado_por": { "type": "string", "enum": ["lista", "qrcode", "professor"], "description": "Origem do check-in" }
+  },
+  "required": ["aluno_id", "dia_id"]
+}

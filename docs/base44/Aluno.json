@@ -1,0 +1,13 @@
+{
+  "name": "Aluno",
+  "type": "object",
+  "properties": {
+    "nome": { "type": "string", "description": "Nome completo do aluno" },
+    "email": { "type": "string", "format": "email", "description": "E-mail (único, minúsculo)" },
+    "telefone": { "type": "string", "description": "Somente dígitos, 10 ou 11" },
+    "cpf": { "type": "string", "description": "Somente dígitos, 11 (único)" },
+    "matricula": { "type": "string", "description": "Somente dígitos (única)" },
+    "curso": { "type": "string", "description": "Curso do aluno" }
+  },
+  "required": ["nome", "email", "telefone", "cpf", "matricula", "curso"]
+}

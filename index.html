@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>6ª Semana Acadêmica UNINASSAU — Inscrição</title>
+  <meta name="description" content="Inscrições, frequência e certificados da 6ª Semana Acadêmica UNINASSAU.">
+  <link rel="icon" href="assets/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="assets/logo.svg" alt="6ª Semana Acadêmica UNINASSAU"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Inscrição</a></li>
+          <li class="nav-item"><a class="nav-link" href="certificado.html">Certificado</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkin.html"><i class="bi bi-person-check"></i> Área do Professor</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="avisoModo" class="alert alert-warning rounded-0 mb-0 text-center small d-none">
+    <i class="bi bi-info-circle"></i> Modo demonstração: dados salvos apenas neste navegador. Configure o Base44 em <code>js/config.js</code>.
+  </div>
+
+  <header class="hero py-5">
+    <div class="container py-lg-4 position-relative" style="z-index:1">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="badge bg-warning text-dark mb-3 px-3 py-2">Inscrições abertas</span>
+          <h1 class="display-5">6ª <span class="destaque">Semana Acadêmica</span> UNINASSAU</h1>
+          <p class="lead mt-3">Palestras, workshops, hackathon e mostra de projetos. Faça sua inscrição, registre sua presença
+            e receba o <strong class="destaque">certificado automaticamente</strong> por e-mail.</p>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a href="#inscricao" class="btn btn-warning btn-lg"><i class="bi bi-pencil-square"></i> Quero me inscrever</a>
+            <a href="certificado.html" class="btn btn-outline-light btn-lg"><i class="bi bi-award"></i> Emitir certificado</a>
+          </div>
+          <p class="mt-4 mb-0 small"><i class="bi bi-geo-alt"></i> <span id="localEvento"></span> ·
+            <i class="bi bi-clock"></i> <span id="cargaTotal"></span>h de programação · mínimo <span id="cargaMin"></span>h para certificado</p>
+        </div>
+        <div class="col-lg-5 text-center"><img src="assets/logo.svg" class="hero-logo" alt="Logo da Jornada Acadêmica"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container py-5">
+      <h2 class="section-title text-center mb-4">Programação</h2>
+      <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-5" id="programacao"></div>
+    </section>
+
+    <section id="inscricao" class="container pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4 p-md-5">
+            <h2 class="section-title mb-1">Inscrição</h2>
+            <p class="text-muted mb-4">Todos os campos são obrigatórios. Use os mesmos dados da sua matrícula.</p>
+
+            <form id="formInscricao" novalidate autocomplete="on">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="nome" class="form-label">Nome completo</label>
+                  <input type="text" class="form-control" id="nome" name="nome" maxlength="120" placeholder="Ex.: Maria da Silva Santos" required autocomplete="name">
+                  <div class="invalid-feedback">Informe nome e sobrenome (somente letras).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" maxlength="120" placeholder="voce@email.com" required autocomplete="email">
+                  <div class="invalid-feedback">Informe um e-mail válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefone" class="form-label">Telefone / WhatsApp</label>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" inputmode="numeric" placeholder="(81) 99999-9999" required autocomplete="tel">
+                  <div class="invalid-feedback">Informe DDD + número.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="cpf" class="form-label">CPF</label>
+                  <input type="text" class="form-control" id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" required>
+                  <div class="invalid-feedback">CPF inválido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="matricula" class="form-label">Matrícula</label>
+                  <input type="text" class="form-control" id="matricula" name="matricula" inputmode="numeric" placeholder="Somente números" required>
+                  <div class="invalid-feedback">Matrícula deve ter de 5 a 15 números.</div>
+                </div>
+                <div class="col-12">
+                  <label for="curso" class="form-label">Curso</label>
+                  <select class="form-select" id="curso" name="curso" required>
+                    <option value="" selected disabled>Selecione seu curso…</option>
+                  </select>
+                  <div class="invalid-feedback">Selecione o curso.</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="lgpd" required>
+                    <label class="form-check-label small" for="lgpd">Autorizo o uso dos meus dados exclusivamente para inscrição, controle de frequência e emissão de certificado deste evento (LGPD).</label>
+                    <div class="invalid-feedback">É necessário aceitar para continuar.</div>
+                  </div>
+                </div>
+                <div class="col-12 d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btnSalvar">
+                    <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+                    <span class="rotulo"><i class="bi bi-check2-circle"></i> Confirmar inscrição</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de sucesso com QR Code -->
+  <div class="modal fade" id="modalSucesso" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-3">
+        <div class="modal-body">
+          <i class="bi bi-check-circle-fill text-success" style="font-size:3rem"></i>
+          <h3 class="section-title text-center mt-2">Inscrição confirmada!</h3>
+          <p class="mb-3">Olá, <strong id="sucessoNome"></strong>. Apresente este QR Code ao professor em cada dia do evento para registrar sua presença.</p>
+          <div class="qr-box"><div id="qrcode"></div></div>
+          <p class="small text-muted mt-2 mb-0">Código: <code id="sucessoCodigo"></code></p>
+        </div>
+        <div class="modal-footer justify-content-center border-0">
+          <button class="btn btn-warning" id="btnBaixarQR"><i class="bi bi-download"></i> Baixar QR Code</button>
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 text-center small">
+    <div class="container">© <span id="ano"></span> 6ª Semana Acadêmica UNINASSAU · Desenvolvido pela Fábrica de Software da turma</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/validacao.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/inscricao.js"></script>
+</body>
+</html>

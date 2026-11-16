@@ -1,0 +1,10 @@
+{
+  "name": "semana-academica-uninassau",
+  "version": "1.0.0",
+  "description": "Inscrição, frequência e certificado da 6ª Semana Acadêmica UNINASSAU",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/",
+    "start": "npx serve ."
+  }
+}

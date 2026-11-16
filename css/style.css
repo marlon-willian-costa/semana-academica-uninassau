@@ -1,0 +1,58 @@
+/* Identidade visual — Azul & Amarelo (Squad 2) */
+:root {
+  --azul: #0b3d91;
+  --azul-escuro: #072a66;
+  --amarelo: #ffc20e;
+  --amarelo-escuro: #e0a800;
+  --cinza: #f4f6fb;
+  --bs-primary: #0b3d91;
+  --bs-primary-rgb: 11, 61, 145;
+  --bs-warning: #ffc20e;
+  --bs-warning-rgb: 255, 194, 14;
+}
+
+body { font-family: "Poppins", system-ui, sans-serif; background: var(--cinza); color: #1d2433; }
+
+.navbar { background: var(--azul) !important; }
+.navbar .nav-link { color: rgba(255,255,255,.85); font-weight: 500; }
+.navbar .nav-link.active, .navbar .nav-link:hover { color: var(--amarelo); }
+.navbar-brand img { height: 40px; background: #fff; border-radius: 8px; padding: 2px 6px; }
+
+.btn-primary { background: var(--azul); border-color: var(--azul); }
+.btn-primary:hover, .btn-primary:focus { background: var(--azul-escuro); border-color: var(--azul-escuro); }
+.btn-warning { background: var(--amarelo); border-color: var(--amarelo); color: var(--azul-escuro); font-weight: 600; }
+.btn-warning:hover { background: var(--amarelo-escuro); border-color: var(--amarelo-escuro); }
+
+.hero {
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 60%);
+  color: #fff; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ""; position: absolute; right: -120px; top: -120px; width: 380px; height: 380px;
+  border-radius: 50%; background: var(--amarelo); opacity: .18;
+}
+.hero h1 { font-weight: 800; }
+.hero .destaque { color: var(--amarelo); }
+.hero-logo { max-width: 320px; width: 100%; background: #fff; border-radius: 16px; padding: 12px; }
+
+.card { border: 0; border-radius: 16px; box-shadow: 0 6px 24px rgba(11, 61, 145, .08); }
+.card-dia { border-top: 5px solid var(--amarelo); height: 100%; }
+.card-dia .data { color: var(--azul); font-weight: 700; }
+
+.section-title { color: var(--azul); font-weight: 800; }
+.section-title::after { content: ""; display: block; width: 64px; height: 5px; background: var(--amarelo); border-radius: 4px; margin-top: 8px; }
+.text-center .section-title::after, .section-title.text-center::after { margin-left: auto; margin-right: auto; }
+
+.form-control:focus, .form-select:focus { border-color: var(--amarelo); box-shadow: 0 0 0 .25rem rgba(255, 194, 14, .35); }
+
+.tabela-chamada td, .tabela-chamada th { vertical-align: middle; }
+.tabela-chamada .form-check-input { width: 2.6em; height: 1.4em; cursor: pointer; }
+.tabela-chamada .form-check-input:checked { background-color: #198754; border-color: #198754; }
+
+#leitorQR { max-width: 420px; margin: 0 auto; }
+.qr-box { display: inline-block; padding: 12px; background: #fff; border-radius: 12px; border: 3px solid var(--amarelo); }
+
+footer { background: var(--azul-escuro); color: rgba(255,255,255,.8); }
+footer a { color: var(--amarelo); }
+
+.toast-container { z-index: 1090; }

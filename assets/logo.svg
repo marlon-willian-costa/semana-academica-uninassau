@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" role="img" aria-label="6ª Semana Acadêmica">
+  <!-- LOGO PROVISÓRIA: Squad 2 deve substituir pela Logo Oficial da Jornada Acadêmica -->
+  <rect x="4" y="4" width="112" height="112" rx="22" fill="#0b3d91"/>
+  <text x="60" y="88" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="78" font-weight="900" fill="#ffc20e">6</text>
+  <text x="93" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffc20e">ª</text>
+  <text x="132" y="54" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" fill="#0b3d91">SEMANA</text>
+  <text x="132" y="88" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" fill="#ffc20e">ACADÊMICA</text>
+  <text x="133" y="110" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#0b3d91" letter-spacing="3">UNINASSAU</text>
+</svg>
