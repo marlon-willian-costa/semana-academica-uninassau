@@ -1,0 +1,25 @@
+# 6ª Semana Acadêmica UNINASSAU
+
+> Site de inscrição, controle de frequência (check-in por QR Code ou lista) e emissão de certificado em PDF da 6ª Semana Acadêmica da UNINASSAU, realizada de 17 a 21 de novembro de 2026 no Auditório Principal da UNINASSAU. São 5 dias de programação, 5 horas por dia (25 horas no total); o certificado exige no mínimo 20 horas de presença.
+
+Desenvolvido por Pedro Gabriel de Almeida Avelino e Marlon Willian Silva Costa (projeto da disciplina, formato Fábrica de Software). Idioma: português do Brasil.
+
+## Páginas
+- [Início: programação, inscrição e dúvidas](https://marlon-willian-costa.github.io/semana-academica-uninassau/): apresentação do evento, programação dia a dia, formulário de inscrição e perguntas frequentes.
+- [Certificado](https://marlon-willian-costa.github.io/semana-academica-uninassau/certificado.html): consulta de carga horária por CPF e matrícula e download do certificado em PDF.
+
+## Programação
+- Dia 1, 17/11/2026 (5 h): Abertura & Palestra Magna. Cerimônia de abertura e palestra magna reúnem a comunidade acadêmica no auditório principal.
+- Dia 2, 18/11/2026 (5 h): Trilhas de Tecnologia. Sessões técnicas por trilha, com foco nos cursos de tecnologia e nas tendências do mercado.
+- Dia 3, 19/11/2026 (5 h): Workshops Práticos. Oficinas mão na massa para aplicar na prática o que foi visto nas trilhas.
+- Dia 4, 20/11/2026 (5 h): Hackathon & Mesa-Redonda. Equipes resolvem desafios em tempo real e, em seguida, debatem em mesa-redonda.
+- Dia 5, 21/11/2026 (5 h): Mostra de Projetos & Encerramento. Os projetos da turma são apresentados a professores e visitantes, com encerramento do evento.
+
+## Como funciona
+- Inscrição: nome completo, e-mail, WhatsApp, CPF, matrícula e curso; CPF, e-mail e matrícula não podem se repetir. Ao confirmar, o participante recebe um QR Code pessoal.
+- Presença: o professor registra a presença em cada dia pela leitura do QR Code ou pela lista de chamada (Área do professor, protegida por PIN).
+- Certificado: com 20 horas ou mais de presença (4 dos 5 dias), o participante informa CPF e matrícula na página de certificado e baixa o PDF.
+- Dados: usados somente para inscrição, controle de frequência e emissão do certificado (LGPD).
+
+## Mais detalhes
+- [Conteúdo completo em texto](https://marlon-willian-costa.github.io/semana-academica-uninassau/llms-full.txt): programação, perguntas e respostas e regras do evento em um único arquivo.

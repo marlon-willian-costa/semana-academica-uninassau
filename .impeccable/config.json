@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-11-16T05:42:38.337Z",
+        "reason": "user confirmed: o dono mandou usar as fontes do site.softpaybr.com (Montserrat), 16/11/2026"
+      }
+    ]
+  }
+}

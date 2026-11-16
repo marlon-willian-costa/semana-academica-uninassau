@@ -1,0 +1,61 @@
+# 6ª Semana Acadêmica UNINASSAU — conteúdo completo
+
+Fonte: https://marlon-willian-costa.github.io/semana-academica-uninassau/ (atualizado em 16/11/2026). Idioma: português do Brasil.
+
+## Resumo
+Inscrições abertas para a 6ª Semana Acadêmica UNINASSAU, de 17 a 21 de novembro de 2026: palestras, trilhas de tecnologia, workshops, hackathon e mostra de projetos, com certificado de até 25 horas.
+
+- Local: UNINASSAU — Auditório Principal.
+- Período: 17 a 21 de novembro de 2026.
+- Carga horária: 5 dias de 5 horas cada, 25 horas no total; mínimo de 20 horas para o certificado.
+- Organização: UNINASSAU. Site desenvolvido por Pedro Gabriel de Almeida Avelino e Marlon Willian Silva Costa.
+
+## Programação
+- Dia 1, 17/11/2026 (5 h): Abertura & Palestra Magna. Cerimônia de abertura e palestra magna reúnem a comunidade acadêmica no auditório principal.
+- Dia 2, 18/11/2026 (5 h): Trilhas de Tecnologia. Sessões técnicas por trilha, com foco nos cursos de tecnologia e nas tendências do mercado.
+- Dia 3, 19/11/2026 (5 h): Workshops Práticos. Oficinas mão na massa para aplicar na prática o que foi visto nas trilhas.
+- Dia 4, 20/11/2026 (5 h): Hackathon & Mesa-Redonda. Equipes resolvem desafios em tempo real e, em seguida, debatem em mesa-redonda.
+- Dia 5, 21/11/2026 (5 h): Mostra de Projetos & Encerramento. Os projetos da turma são apresentados a professores e visitantes, com encerramento do evento.
+
+## Passos para participar
+1. Inscreva-se: preencha o formulário com os mesmos dados da matrícula e receba o QR Code pessoal.
+2. Registre presença: mostre o QR Code ao professor em cada dia; a chamada também pode ser feita por lista.
+3. Receba o certificado: com 20 horas de presença, consulte CPF e matrícula na página de certificado e baixe o PDF.
+
+## Cursos disponíveis no formulário
+Análise e Desenvolvimento de Sistemas, Ciência da Computação, Sistemas de Informação, Engenharia de Software, Redes de Computadores, Administração, Direito, Enfermagem, Psicologia e Outro.
+
+## Perguntas frequentes
+### Quantas horas preciso para o certificado?
+São 20 horas no mínimo. Cada dia vale 5 horas, então é preciso estar presente em pelo menos 4 dos 5 dias.
+
+### Como registro minha presença?
+Depois da inscrição você recebe um QR Code pessoal. O professor lê o código em cada dia do evento, ou marca você na lista de chamada.
+
+### Como emito meu certificado?
+Na página Certificado, informe seu CPF e sua matrícula. Se a carga mínima foi cumprida, o PDF é liberado na hora.
+
+### Perdi meu QR Code. E agora?
+Sem problema: o professor pode registrar sua presença pela lista de chamada, buscando seu nome ou matrícula.
+
+### Preciso me inscrever de novo?
+Não. CPF, e-mail e matrícula são únicos: se tentar de novo, o sistema avisa que a inscrição já existe. Para consultar sua carga, use a página de certificado.
+
+### Meus dados estão seguros?
+Os dados são usados só para inscrição, controle de frequência e emissão do certificado deste evento, conforme a LGPD que você autoriza ao se inscrever.
+
+### Quais cursos podem participar?
+Os cursos listados no formulário de inscrição. Se o seu não aparece, escolha a opção “Outro”.
+
+### Posso salvar meu QR Code?
+Sim. Ao confirmar a inscrição, use o botão “Baixar QR Code” para guardar a imagem no celular.
+
+### Como o professor faz a chamada?
+Na Área do professor, com PIN: pela lista de alunos com caixas de seleção rápida ou lendo o QR Code com a câmera. A frequência também pode ser exportada em planilha.
+
+### Em que formato sai o certificado?
+Em PDF, gerado na hora com o seu nome e a carga horária cumprida.
+
+## Páginas do site
+- Início: https://marlon-willian-costa.github.io/semana-academica-uninassau/
+- Certificado: https://marlon-willian-costa.github.io/semana-academica-uninassau/certificado.html

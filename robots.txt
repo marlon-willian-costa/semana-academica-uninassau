@@ -1,0 +1,35 @@
+# 6ª Semana Acadêmica UNINASSAU — rastreadores de busca e de IA são bem-vindos nas páginas públicas
+User-agent: *
+Allow: /
+Disallow: /checkin.html
+
+User-agent: GPTBot
+Allow: /
+Disallow: /checkin.html
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /checkin.html
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://marlon-willian-costa.github.io/semana-academica-uninassau/sitemap.xml

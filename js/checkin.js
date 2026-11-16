@@ -9,8 +9,8 @@
 
   // ---------- PIN ----------
   function liberar() {
-    $("telaPin").classList.add("d-none");
-    $("painel").classList.remove("d-none");
+    $("telaPin").hidden = true;
+    $("painel").hidden = false;
     iniciar();
   }
   if (sessionStorage.getItem("sa6_prof") === "ok") liberar();
@@ -21,6 +21,7 @@
       liberar();
     } else {
       $("pin").classList.add("is-invalid");
+      $("pin").select?.();
       UI.toast("PIN incorreto.", "danger");
     }
   });
@@ -30,7 +31,8 @@
     const sel = $("dia");
     cfg.evento.dias.forEach((d) => sel.add(new Option(`${UI.dataBR(d.data)} — ${d.titulo}`, d.id)));
     const hoje = cfg.evento.dias.find((d) => d.data === UI.hojeISO());
-    if (hoje) sel.value = hoje.id;
+    sel.value = hoje ? hoje.id : cfg.evento.dias[0].id;
+    UI.select(sel);
     $("kpiMin").textContent = cfg.evento.cargaMinima + "h";
 
     sel.addEventListener("change", render);
@@ -47,7 +49,7 @@
       render();
     } catch (err) {
       console.error(err);
-      $("lista").innerHTML = `<tr><td colspan="5" class="text-danger text-center py-4">${V.escapeHTML(err.message)}</td></tr>`;
+      $("lista").innerHTML = `<tr><td colspan="5" class="vazio-tabela" style="color:var(--erro)">${V.escapeHTML(err.message)}</td></tr>`;
     }
   }
 
@@ -64,17 +66,17 @@
     $("kpiAptos").textContent = alunos.filter((a) => DB.calcularCarga(a.id, frequencias).aprovado).length;
 
     if (!filtrados.length) {
-      $("lista").innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4">Nenhum aluno encontrado.</td></tr>`;
+      $("lista").innerHTML = `<tr><td colspan="5" class="vazio-tabela">Nenhum aluno encontrado.</td></tr>`;
       return;
     }
     $("lista").innerHTML = filtrados.map((a) => {
       const carga = DB.calcularCarga(a.id, frequencias);
       return `<tr>
-        <td><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" data-id="${V.escapeHTML(a.id)}" ${presente(a.id, dia) ? "checked" : ""} aria-label="Presença de ${V.escapeHTML(a.nome)}"></div></td>
-        <td class="fw-semibold">${V.escapeHTML(a.nome)}</td>
-        <td class="d-none d-md-table-cell">${V.escapeHTML(a.matricula)}</td>
-        <td class="d-none d-lg-table-cell small">${V.escapeHTML(a.curso)}</td>
-        <td><span class="badge ${carga.aprovado ? "bg-success" : "bg-secondary"}">${carga.horas}h</span></td>
+        <td class="c-presente"><label class="area-toque"><input class="interruptor" type="checkbox" data-id="${V.escapeHTML(a.id)}" ${presente(a.id, dia) ? "checked" : ""} aria-label="Presença de ${V.escapeHTML(a.nome)}"></label></td>
+        <td class="c-nome nome">${V.escapeHTML(a.nome)}</td>
+        <td class="c-mat">${V.escapeHTML(a.matricula)}</td>
+        <td class="c-curso"><small>${V.escapeHTML(a.curso)}</small></td>
+        <td class="c-carga"><span class="etiqueta-carga${carga.aprovado ? " ok" : ""}">${carga.horas}h</span></td>
       </tr>`;
     }).join("");
   }
@@ -103,18 +105,17 @@
   let ultimoLido = { texto: "", em: 0 };
 
   function abrirLeitor() {
-    const modalEl = $("modalQR");
-    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-    modal.show();
-    modalEl.addEventListener("shown.bs.modal", () => {
+    $("ultimoCheckin").textContent = "";
+    janelaQR.abrir();
+    setTimeout(() => {
       if (scanner) return;
       scanner = new Html5QrcodeScanner("leitorQR", { fps: 10, qrbox: 230 }, false);
       scanner.render(onLeitura, () => {});
-    }, { once: true });
-    modalEl.addEventListener("hidden.bs.modal", async () => {
-      if (scanner) { await scanner.clear().catch(() => {}); scanner = null; }
-    }, { once: true });
+    }, 300);
   }
+  const janelaQR = UI.modal("modalQR", {
+    aoFechar: async () => { if (scanner) { await scanner.clear().catch(() => {}); scanner = null; } }
+  });
 
   async function onLeitura(texto) {
     const agora = Date.now();
@@ -122,21 +123,21 @@
     ultimoLido = { texto, em: agora };
 
     const out = $("ultimoCheckin");
-    if (!texto.startsWith("SA6:")) { out.innerHTML = `<span class="text-danger">QR Code não pertence ao evento.</span>`; return; }
+    if (!texto.startsWith("SA6:")) { out.innerHTML = `<span class="erro">QR Code não pertence ao evento.</span>`; return; }
     const aluno = alunos.find((a) => a.id === texto.slice(4)) || await DB.buscarAluno({ id: texto.slice(4) });
-    if (!aluno) { out.innerHTML = `<span class="text-danger">Inscrição não encontrada.</span>`; return; }
+    if (!aluno) { out.innerHTML = `<span class="erro">Inscrição não encontrada.</span>`; return; }
 
     try {
       const { novo } = await DB.registrarPresenca(aluno.id, $("dia").value, "qrcode");
       out.innerHTML = novo
-        ? `<span class="text-success"><i class="bi bi-check-circle-fill"></i> ${V.escapeHTML(aluno.nome)} — presença registrada!</span>`
-        : `<span class="text-warning"><i class="bi bi-exclamation-circle"></i> ${V.escapeHTML(aluno.nome)} já estava presente.</span>`;
+        ? `<span class="ok"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> ${V.escapeHTML(aluno.nome)} — presença registrada!</span>`
+        : `<span class="alerta"><i class="bi bi-exclamation-circle" aria-hidden="true"></i> ${V.escapeHTML(aluno.nome)} já estava presente.</span>`;
       if (navigator.vibrate) navigator.vibrate(120);
       if (!alunos.some((a) => a.id === aluno.id)) alunos = await DB.listarAlunos();
       frequencias = await DB.listarFrequencias();
       render();
     } catch (err) {
-      out.innerHTML = `<span class="text-danger">${V.escapeHTML(err.message)}</span>`;
+      out.innerHTML = `<span class="erro">${V.escapeHTML(err.message)}</span>`;
     }
   }
 

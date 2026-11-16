@@ -25,15 +25,15 @@
       const aluno = await DB.buscarAluno({ cpf: $("cpf").value });
       // Exige CPF + matrícula para impedir que alguém emita o certificado de outra pessoa só com o CPF
       if (!aluno || aluno.matricula !== V.soDigitos($("matricula").value)) {
-        out.innerHTML = `<div class="alert alert-danger mb-0">Inscrição não encontrada para estes dados.</div>`;
-        out.classList.remove("d-none");
+        out.innerHTML = `<div class="mensagem mensagem--erro"><i class="bi bi-x-octagon-fill" aria-hidden="true"></i><span>Inscrição não encontrada para estes dados.</span></div>`;
+        out.hidden = false;
         return;
       }
       const carga = DB.calcularCarga(aluno.id, await DB.listarFrequencias());
       renderResultado(aluno, carga);
     } catch (err) {
-      out.innerHTML = `<div class="alert alert-danger mb-0">${V.escapeHTML(err.message)}</div>`;
-      out.classList.remove("d-none");
+      out.innerHTML = `<div class="mensagem mensagem--erro"><i class="bi bi-x-octagon-fill" aria-hidden="true"></i><span>${V.escapeHTML(err.message)}</span></div>`;
+      out.hidden = false;
     } finally {
       btn.disabled = false;
     }
@@ -42,24 +42,24 @@
   function renderResultado(aluno, carga) {
     const out = $("resultado");
     const pct = Math.min(100, Math.round((carga.horas / cfg.evento.cargaMinima) * 100));
-    const dias = cfg.evento.dias.map((d) =>
-      `<span class="badge ${carga.diasPresentes.includes(d.id) ? "bg-success" : "bg-light text-muted border"} me-1">${UI.dataBR(d.data)}</span>`).join("");
+    const dias = cfg.evento.dias.map((d) => {
+      const [, m, dia] = d.data.split("-");
+      return `<span class="dia-presenca${carga.diasPresentes.includes(d.id) ? " ok" : ""}"><span>${dia}/${m}</span><i class="bi bi-${carga.diasPresentes.includes(d.id) ? "check-circle-fill" : "dash-circle"}" aria-hidden="true"></i></span>`;
+    }).join("");
 
     out.innerHTML = `
-      <h2 class="h5 mb-1">${V.escapeHTML(aluno.nome)}</h2>
-      <div class="small text-muted mb-2">${V.escapeHTML(aluno.curso)}</div>
-      <div class="mb-2">${dias}</div>
-      <div class="progress mb-2" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" style="height:22px">
-        <div class="progress-bar ${carga.aprovado ? "bg-success" : "bg-warning text-dark"}" style="width:${pct}%">${carga.horas}h / ${cfg.evento.cargaMinima}h</div>
-      </div>
+      <div><h2>${V.escapeHTML(aluno.nome)}</h2><p class="sub">${V.escapeHTML(aluno.curso)} · matrícula ${V.escapeHTML(aluno.matricula)}</p></div>
+      <div class="dias-presenca" aria-label="Presença por dia">${dias}</div>
+      <div class="progresso${carga.aprovado ? " ok" : ""}" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="--p:0"></i><span>${carga.horas}h de ${cfg.evento.cargaMinima}h</span></div>
       ${carga.aprovado
-        ? `<div class="alert alert-success">Parabéns! Você cumpriu a carga horária mínima.</div>
-           <div class="d-grid gap-2">
-             <button class="btn btn-warning btn-lg" id="btnPDF"><i class="bi bi-file-earmark-pdf"></i> Baixar certificado</button>
-             ${emailAtivo() ? `<button class="btn btn-outline-primary" id="btnEmail"><i class="bi bi-envelope"></i> Enviar para ${V.escapeHTML(aluno.email)}</button>` : ""}
+        ? `<div class="mensagem mensagem--ok"><i class="bi bi-patch-check-fill" aria-hidden="true"></i><span>Parabéns! Você cumpriu a carga horária mínima.</span></div>
+           <div class="empilha-botoes">
+             <button class="botao" id="btnPDF" type="button"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Baixar certificado</button>
+             ${emailAtivo() ? `<button class="botao botao--contorno-azul" id="btnEmail" type="button"><i class="bi bi-envelope" aria-hidden="true"></i> Enviar para ${V.escapeHTML(aluno.email)}</button>` : ""}
            </div>`
-        : `<div class="alert alert-warning mb-0">Faltam <strong>${cfg.evento.cargaMinima - carga.horas}h</strong> para liberar o certificado.</div>`}`;
-    out.classList.remove("d-none");
+        : `<div class="mensagem mensagem--alerta"><i class="bi bi-hourglass-split" aria-hidden="true"></i><span>Faltam <strong>${cfg.evento.cargaMinima - carga.horas}h</strong> para liberar o certificado.</span></div>`}`;
+    out.hidden = false;
+    requestAnimationFrame(() => out.querySelector(".progresso > i")?.style.setProperty("--p", pct / 100));
 
     if (carga.aprovado) {
       $("btnPDF").onclick = async () => (await gerarPDF(aluno, carga)).save(`certificado-${aluno.matricula}.pdf`);
